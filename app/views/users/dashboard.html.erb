@@ -1,0 +1,17 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/links", :locals => {:active => 'dashboard'} %>
+        <div class="col-md-9">
+            <h3>Welcome, <%= @user[:fullname] %></h3>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>

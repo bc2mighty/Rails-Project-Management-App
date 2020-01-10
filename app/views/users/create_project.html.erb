@@ -1,0 +1,28 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/links", :locals => {:active => 'create_project'} %>
+        <div class="col-md-9 bg-white right-part">
+            <h3 class="">Create A Project</h3>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <%= form_for :project, url: projects_create_users_path, html: {class: 'login-form'} do |f| %>
+                <%= f.text_field :title, class: 'form-control', placeholder: 'Enter Project Title' %>
+                    <% if @project != nil and @project.errors.any? and @project.errors.to_h[:title].to_s != "" %>
+                        <div class="alert alert-danger"><%= "Title " + @project.errors.to_h[:title].to_s %></div>
+                    <% end %>
+                <%= f.text_area :description, class: 'form-control', placeholder: 'Enter Project Description' %>
+                    <% if @project != nil and @project.errors.any? and @project.errors.to_h[:description].to_s != "" %>
+                        <div class="alert alert-danger"><%= "Description " + @project.errors.to_h[:description].to_s %></div>
+                    <% end %>
+                <%= f.submit "Submit Project", class: 'form-submit'%>
+            <% end %>
+        </div>
+    </div>
+</div>

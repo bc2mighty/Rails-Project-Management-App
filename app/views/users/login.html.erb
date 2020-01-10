@@ -1,0 +1,24 @@
+<section class="login">
+    <div class="user-pic"></div>
+    <div class="form-header">User Login</div>
+    <% flash.each do |type, msg| %>
+        <% if type == 'success' %>
+            <div class="alert alert-success"><%= msg %></div>
+        <% elsif type == 'error' %>
+            <div class="alert alert-danger"><%= msg %></div>
+        <% else %>
+            <div class="alert alert-info"><%= msg %></div>
+        <% end %>
+    <% end %>
+    <%= form_for :user, url: login_users_path, html: {class: 'login-form'} do |f| %>
+        <%= f.email_field :email, class: 'form-control', placeholder: 'Enter Your Email Address' %>
+        <% if @user != nil and @user.errors.any? and @user.errors.to_h[:email].to_s != "" %>
+            <div class="alert alert-danger"><%= "Email " + @user.errors.to_h[:email].to_s %></div>
+        <% end %>
+        <%= f.password_field :password, class: 'form-control', placeholder: 'Enter Your Password' %>
+        <% if @user != nil and @user.errors.any? and @user.errors.to_h[:password].to_s != "" %>
+            <div class="alert alert-danger"><%= "Password " + @user.errors.to_h[:password].to_s %></div>
+        <% end %>
+        <%= f.submit "Sign In", class: 'form-submit', placeholder: 'Enter Your Password' %>
+    <% end %>
+</section>

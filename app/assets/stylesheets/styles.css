@@ -1,0 +1,225 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    background: #d8d8d8;
+}
+
+*{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+nav{
+    height: 80px;
+    width: 100%;
+    background: #2c3e50;
+    padding: 20px 3%;
+    box-sizing: border-box;
+    display: flex;
+}
+
+nav .left{
+    width: auto;
+    height: 50px;
+}
+
+.left a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+nav .right{
+    width: auto;
+    height: 50px;
+    margin-left: auto;
+}
+
+.right a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 30px;
+    display: block;
+    display: inline;
+}
+
+.right a{
+    margin-right: 50px;
+}
+
+.right a:last-child{
+    margin-right: 0;
+}
+
+section.hero{
+    height: 400px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+section.hero .img-container{
+    height: 350px;
+    width: 350px;
+    margin: 0 auto;
+    justify-content: center;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.img-container img.rounded{
+    height: 200px;
+    width: 200px;
+    display: block;
+    padding-top: 50px;
+    margin: auto;
+}
+
+section.hero .title{
+    margin-top: 20px;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+section.login{
+    margin: 40px auto;
+    height: auto;
+    width: 400px;
+    background: #fff;
+    border-radius: 2px;
+    padding: 10px 2%;
+    box-sizing: border-box;
+}
+
+section.login.turn-up{
+    height: auto;
+}
+
+section.login .user-pic{
+    height: 70px;
+    width: 70px;
+    margin: 10px auto;
+    border-radius: 50%;
+    background-image: url("user.png");
+    background-size: contain;
+}
+
+form.login-form{
+    height: auto;
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+form.login-form input[type=email]{
+    margin-top: 30px;
+}
+
+form.login-form input.form-control, form.login-form textarea.form-control{
+    width: 100%;
+    height: 50px;
+    padding: 4px 2%;
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+    outline: none;
+    border: 0px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    background: none;
+}
+
+form.login-form textarea.form-control{
+    height: 100px;
+}
+
+.form-header{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+form.login-form input[type=submit]{
+    width: 100%;
+    height: 50px;
+    padding: 4px 3%;
+    box-sizing: border-box;
+    display: block;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 25px;
+    background: #2c3e50;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+form.login-form input[type=submit]:hover{
+    background: #fff;
+    transition: .2s ease-in-out;
+    color: #2c3e50;
+    font-weight: bold;
+    border: 1px solid #2c3e50;
+}
+
+.list-group-item.active{
+    background: #2c3e50;
+    border: none;
+}
+
+.change-padding{
+    width: 100%;
+    padding: 10px 3%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 2px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2c3e50; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2c3e50; 
+  }
+
+  .col-md-9.bg-white{
+      background: #fff;
+  }
+
+  .col-md-9.right-part{
+      padding: 20px 2%;
+      box-sizing: border-box;
+  }
+
+  .profile-column{
+      height: auto;
+      width: 100%;
+  }
+
+  .profile-column .user-pic{
+    height: 150px;
+    width: 150px;
+    margin: 10px auto;
+    border-radius: 50%;
+    background-image: url("user.png");
+    background-size: contain;
+  }
+
+  .alert{
+      font-size: 12px;
+      margin-bottom: 10px;
+  }

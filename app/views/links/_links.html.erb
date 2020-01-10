@@ -1,0 +1,10 @@
+
+        <div class="col-md-3">
+            <div class="list-group">
+                <%= link_to "Dashboard", dashboard_users_path, :class => "list-group-item list-group-item-action active" %>
+                <%= link_to "Profile", profile_users_path, :class => "list-group-item list-group-item-action" %>
+                <%= link_to "Create Project", projects_create_users_path, :class => "list-group-item list-group-item-action" %>
+                <%= link_to "Projects", projects_users_path, :class => "list-group-item list-group-item-action" %>
+                <%= link_to "Logout", users_path + "/logout", :class => "list-group-item list-group-item-action" %>
+            </div>
+        </div>

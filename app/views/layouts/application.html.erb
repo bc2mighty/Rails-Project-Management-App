@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyBasecamp1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" %>
+    <%= stylesheet_link_tag href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= stylesheet_link_tag href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" %>
+    <%= stylesheet_link_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav>
+      <div class="left">
+        <%= link_to "MyBasecamp1", home_path %>
+      </div>
+      <div class="right">
+        <% if logged_in? %>
+          <%= link_to "Dashboard", dashboard_users_path %>
+          <%= link_to "Logout", logout_users_path %>
+        <% else %>
+          <%= link_to "SignIn", login_users_path %>
+          <%= link_to "SignUp", new_user_path %>
+        <% end %>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
