@@ -1,0 +1,61 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/admin_link", :locals => {:active => 'users'} %>
+        <div class="col-md-9 bg-white right-part">
+            <h3>Your user List</h3>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <br>
+            <% if @user != nil and @user.errors.any? %>
+                <% @user.errors.full_messages.each do |msg| %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% count = 0 %>
+                    <% @users.each do |user| %>
+                    <tr>
+                    <th scope="row"><%= count += 1 %></th>
+                    <td><%= user.fullname %></td>
+                    <td><%= user.email %></td>
+                    <td>
+                        <% if user.isAdmin %>
+                            <%= "Admin" %>
+                        <% else %>
+                            <%= "Normal User" %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%# link_to "Projects", users_admin_index_path + "/projects/#{user.userid}", :class => 'btn btn-sm btn-primary' %>
+                        <% if user.isAdmin %>
+                            <%= link_to "Unset Admin Privilege", users_admin_index_path + "/unset_admin/#{user.userid}", :class => 'btn btn-sm btn-danger' %>
+                        <% else %>
+                            <%= link_to "Set As Admin", users_admin_index_path + "/set_admin/#{user.userid}", :class => 'btn btn-sm btn-secondary' %>
+                        <% end %>
+                    </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <%= pagy_nav(@pagy).html_safe %>
+        </div>
+    </div>
+</div>

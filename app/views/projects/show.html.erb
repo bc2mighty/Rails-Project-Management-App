@@ -1,0 +1,16 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/links", :locals => {:active => 'profile'} %>
+        <div class="col-md-9 bg-white right-part">
+            <div class="row">
+                <div class="col-md-6 profile-column">
+                    <h3 class="">Project Details Page</h3>
+                    <div class="user-pic project-pic"></div>
+                    <div class="font-weight-bold">Title: <%= @project[:title] %></div>
+                    <br>
+                    <div class="font-weight-bold">Description: <%= @project[:description] %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

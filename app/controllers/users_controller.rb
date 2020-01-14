@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :authorize_login, :only => [:login, :new]
-    before_action :authorize_logout, :only => [:dashboard, :profile, :projects, :create_project, :show, :logout]
+    before_action :authorize_logout, :only => [:dashboard, :profile, :projects, :create_project, :edit_project, :show, :logout, :destroy]
     def index
         @user = User.new
     end
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     end
 
     def projects
-        # @projects = @user.projects
+        @pagy, @projects = pagy(@user.projects, items: 5)
         # render plain: @projects.inspect
     end
 
@@ -95,11 +95,18 @@ class UsersController < ApplicationController
     end
 
     def edit_project
-        render plain: "Right Here Now"
+        @project = Project.find_by(projectid: params[:projectid])
     end
 
     def show
         @active = "profile"
+    end
+
+    def destroy
+        @user.destroy
+        session[:logged_in] = session[:id] = session[:userid] = session[:email] = nil
+        flash[:error] = "Account Deleted Successfully"
+        redirect_to login_users_path
     end
 
     def logout

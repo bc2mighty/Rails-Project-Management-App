@@ -24,19 +24,21 @@
                 </thead>
                 <tbody>
                     <% count = 0 %>
-                    <% @user.projects.each do |project| %>
+                    <% @projects.each do |project| %>
                     <tr>
                     <th scope="row"><%= count += 1 %></th>
                     <td><%= project.title %></td>
                     <td><%= project.description %></td>
                     <td>
+                        <%= link_to "View", users_path + "/projects/view/#{project.projectid}", :class => 'btn btn-sm btn-primary' %>
                         <%= link_to "Edit", users_path + "/projects/edit/#{project.projectid}", :class => 'btn btn-sm btn-secondary' %>
-                        <%= link_to "Delete", users_path + "/projects/delete/#{project.projectid}", :class => 'btn btn-sm btn-danger' %>
+                        <%= link_to "Delete", users_path + "/projects/delete/#{project.projectid}", data: {confirm: "Are you sure you want to delete this project?"}, :class => 'btn btn-sm btn-danger' %>
                     </td>
                     </tr>
                     <% end %>
                 </tbody>
             </table>
+            <%= pagy_nav(@pagy).html_safe %>
         </div>
     </div>
 </div>

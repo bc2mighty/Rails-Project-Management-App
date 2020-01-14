@@ -2,7 +2,7 @@
     <div class="row">
         <%= render "links/links", :locals => {:active => 'create_project'} %>
         <div class="col-md-9 bg-white right-part">
-            <h3 class="text-center">Profile Page</h3>
+            <h3 class="text-center">Update Project</h3>
             <% flash.each do |type, msg| %>
                 <% if type == 'success' %>
                     <div class="alert alert-success"><%= msg %></div>
@@ -12,7 +12,12 @@
                     <div class="alert alert-info"><%= msg %></div>
                 <% end %>
             <% end %>
-            <%= form_for :project, url: projects_create_users_path, html: {class: 'login-form'} do |f| %>
+            <% if @project != nil and @project.errors.any? %>
+                <% @project.errors.full_messages.each do |msg| %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <%= form_for :project, url: projects_users_path + "/edit/#{@project.projectid}", html: {class: 'login-form'} do |f| %>
                 <%= f.text_field :title, class: 'form-control', placeholder: 'Enter Project Title' %>
                     <% if @project != nil and @project.errors.any? and @project.errors.to_h[:title].to_s != "" %>
                         <div class="alert alert-danger"><%= "Title " + @project.errors.to_h[:title].to_s %></div>
@@ -21,7 +26,7 @@
                     <% if @project != nil and @project.errors.any? and @project.errors.to_h[:description].to_s != "" %>
                         <div class="alert alert-danger"><%= "Description " + @project.errors.to_h[:description].to_s %></div>
                     <% end %>
-                <%= f.submit "Submit Project", class: 'form-submit'%>
+                <%= f.submit "Update Project", class: 'form-submit'%>
             <% end %>
         </div>
     </div>

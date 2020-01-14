@@ -219,7 +219,16 @@ form.login-form input[type=submit]:hover{
     background-size: contain;
   }
 
+  .profile-column .user-pic.project-pic{
+    background-image: url("layers.png");
+    margin: 10px 0;
+  }
+
   .alert{
       font-size: 12px;
       margin-bottom: 10px;
   }
+
+.pagy-nav.pagination{
+    background: none;
+}
