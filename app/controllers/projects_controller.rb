@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+    before_action :get_project, :only => [:attachments]
     def create
         params[:project][:user_id] = session[:id]
         params[:project][:projectid] = SecureRandom.uuid
@@ -36,7 +37,22 @@ class ProjectsController < ApplicationController
         @project.destroy
         flash[:error] = "Project Deleted Successfully"
         redirect_to projects_users_path
-        # render plain: @project.inspect
+    end
+
+    def attachments
+        @projects = Project.find_by(projectid: params[:projectid])
+        # @projects.attachments.each do |attachment|
+        #     puts attachment
+        # end
+        # render plain: @projects.attachments.inspect
+    end
+
+    def upload_attachments
+        # render plain: 
+    end
+
+    def get_project
+        @project = Project.find_by(projectid: params[:projectid])
     end
 
     def project_params

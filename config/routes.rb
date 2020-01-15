@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :attachments
   resources :users do
     resources :projects
     get 'logout', :on => :collection
@@ -13,7 +14,10 @@ Rails.application.routes.draw do
     get 'projects/view/:projectid' => 'projects#show', :on => :collection
     get 'projects/edit/:projectid' => 'users#edit_project', :on => :collection
     post 'projects/edit/:projectid' => 'projects#update', :on => :collection
-    get 'projects/delete/:projectid' => 'projects#destroy', :on => :collection
+    get 'projects/delete/:projectid' => 'projects#destroy', :on => :collection 
+    get 'projects/attachments/:projectid' => 'projects#attachments', :on => :collection
+    get 'projects/attachments/create/:projectid' => 'projects#upload_attachments', :on => :collection
+    post 'projects/attachments/create/:projectid' => 'attachments#create', :on => :collection
     # post 'projects/create' => 'projects#create', :on => :collection
   end
 

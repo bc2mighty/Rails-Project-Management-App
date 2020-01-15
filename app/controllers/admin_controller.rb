@@ -28,6 +28,12 @@ class AdminController < ApplicationController
         @pagy, @users = pagy(User.all, items: 5)
     end
 
+    def projects
+        @user = User.find_by(userid: params[:userid])
+        @pagy, @projects = pagy(@user.projects, items: 5)
+        render 'user_projects'
+    end
+
     def set_admin
         @user = User.find_by(userid: params[:userid])
         @user.isAdmin = 1

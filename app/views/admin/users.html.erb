@@ -44,7 +44,7 @@
                         <% end %>
                     </td>
                     <td>
-                        <%# link_to "Projects", users_admin_index_path + "/projects/#{user.userid}", :class => 'btn btn-sm btn-primary' %>
+                        <%= link_to "Projects", users_admin_index_path + "/projects/#{user.userid}", :class => 'btn btn-sm btn-primary' %>
                         <% if user.isAdmin %>
                             <%= link_to "Unset Admin Privilege", users_admin_index_path + "/unset_admin/#{user.userid}", :class => 'btn btn-sm btn-danger' %>
                         <% else %>

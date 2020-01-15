@@ -3,14 +3,44 @@
         <%= render "links/links", :locals => {:active => 'profile'} %>
         <div class="col-md-9 bg-white right-part">
             <div class="row">
-                <div class="col-md-6 profile-column">
+                <div class="col-md-4 profile-column">
                     <h3 class="">Project Details Page</h3>
                     <div class="user-pic project-pic"></div>
                     <div class="font-weight-bold">Title: <%= @project[:title] %></div>
                     <br>
                     <div class="font-weight-bold">Description: <%= @project[:description] %></div>
+                    <br>
+                    <%= link_to "Upload Attachment Files", projects_users_path + "/attachments/create/#{@project[:projectid]}", :class => 'btn btn-sm btn-secondary' %>
+                    <%# link_to "View Project Attachments", projects_users_path + "/attachments/#{@project[:projectid]}", :class => "btn btn-sm btn-secondary" %>
+                </div>
+                <div class="col-md-8">
+                    <% flash.each do |type, msg| %>
+                        <% if type == 'success' %>
+                            <div class="alert alert-success"><%= msg %></div>
+                        <% elsif type == 'error' %>
+                            <div class="alert alert-danger"><%= msg %></div>
+                        <% else %>
+                            <div class="alert alert-info"><%= msg %></div>
+                        <% end %>
+                    <% end %>
+                    <div class="row">
+                        <% @project.attachments.each do |attachment| %>
+                            <% (0..attachment.files.count-1).each do |file| %>
+                                <div class="col-md-6" style="margin-bottom:20px">
+                                    <%#= attachment.files[file].content_type %>
+                                    <% if (["application/pdf","application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","text/plain",'text/csv'].include?(attachment.files[file].content_type)) %>
+                                        <h5><%= attachment.title %></h5>
+                                        <%= link_to "Open File", attachment.files[file], :class => "btn btn-sm btn-secondary", "target" => "_blank" %>
+                                    <% else %>
+                                        <%= image_tag attachment.files[file], :style => "max-width:100%;max-height:300px;" %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>

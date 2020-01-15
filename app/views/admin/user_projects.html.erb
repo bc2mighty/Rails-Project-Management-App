@@ -1,0 +1,48 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/admin_link", :locals => {:active => 'projects'} %>
+        <div class="col-md-9 bg-white right-part">
+            <h3><%= @user.fullname %> Project List</h3>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <br>
+            <% if @project != nil and @project.errors.any? %>
+                <% @project.errors.full_messages.each do |msg| %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% count = 0 %>
+                    <% @projects.each do |project| %>
+                    <tr>
+                    <th scope="row"><%= count += 1 %></th>
+                    <td><%= project.title %></td>
+                    <td><%= project.description %></td>
+                    <td>
+                        <%= link_to "Whatever", users_admin_index_path + "/unset_admin/#{project.projectid}", :class => 'btn btn-sm btn-danger' %>
+                    </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <%= pagy_nav(@pagy).html_safe %>
+        </div>
+    </div>
+</div>
