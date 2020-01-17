@@ -139,7 +139,7 @@ form.login-form textarea.form-control{
     font-size: 18px;
 }
 
-form.login-form input[type=submit]{
+form.login-form input[type=submit]:not(.add-not){
     width: 100%;
     height: 50px;
     padding: 4px 3%;
@@ -154,7 +154,7 @@ form.login-form input[type=submit]{
     cursor: pointer;
 }
 
-form.login-form input[type=submit]:hover{
+form.login-form input[type=submit]:not(.add-not):hover{
     background: #fff;
     transition: .2s ease-in-out;
     color: #2c3e50;
@@ -200,6 +200,10 @@ form.login-form input[type=submit]:hover{
       background: #fff;
   }
 
+  .col-md-9.no-bg{
+      background: none;
+  }
+
   .col-md-9.right-part{
       padding: 20px 2%;
       box-sizing: border-box;
@@ -231,4 +235,103 @@ form.login-form input[type=submit]:hover{
 
 .pagy-nav.pagination{
     background: none;
+}
+
+.col-md-3.add-card{
+    background: #fff;
+    height: auto;
+    border-radius: 5px;
+    padding: 15px 0;
+    padding-top: 5px;
+    box-sizing: border-box;
+    max-width: 24%;
+    margin-right: 1%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.first-letter{
+    text-transform: uppercase;
+    text-align: center;
+    height: auto;
+    width: 70px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
+    background: #68428a;
+    padding: 5px 0;
+    box-sizing: border-box;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.text-center.project-text{
+    margin-top: 10px;
+}
+
+a.all-center{
+    display: inline-flexbox;
+}
+
+.col-md-3.col-md-3.add-card .three-circles{
+    position: absolute;
+    height: auto;
+    width: auto;
+    display: flexbox;
+    left: 80%;
+    cursor: pointer;
+}
+
+.three-circles div{
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    border: 1px solid #2c3e50;
+    /* margin-right: 1px; */
+    display: inline-block;
+}
+
+.kite{
+    height: 8.7px;
+    width: 8.7px;
+    transform: rotate(45deg);
+    background: #d8d8d8;
+    position: absolute;
+    margin-top: 20px;
+    left: 85%;
+    display: none;
+}
+
+.action-links{
+    height: auto;
+    width: 37%;
+    background: #d8d8d8;
+    position: absolute;
+    margin-top: 25px;
+    left: 56%;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: none;
+}
+
+.action-links .action-link{
+    font-size: 10px;
+    display: block;
+    height: 20px;
+    width: 100%;
+    font-weight: bold;
+    text-decoration: none;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.action-links .action-link:last-child{
+    margin-bottom: 0;
+}
+
+.custom-control{
+    margin-right: 20px;
+    display: inline-block;
 }

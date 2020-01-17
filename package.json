@@ -1,5 +1,5 @@
 {
-  "name": "MyBasecamp1",
+  "name": "mybasecamp",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",

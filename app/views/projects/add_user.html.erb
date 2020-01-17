@@ -1,0 +1,48 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/links", :locals => {:active => 'create_project'} %>
+        <div class="col-md-9 bg-white right-part">
+            <h3 class="">Add User To <%= @project.title %></h3>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <% if @project_user != nil and @project_user.errors.any? %>
+                <% @project_user.errors.full_messages.each do |msg| %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <%= form_for :project_user, url: projects_users_path + "/#{@project.projectid}/user/add", html: {class: 'login-form'} do |f| %>
+                <%= f.label "Select User to add" %><br>
+                <%# f.select( :user_id, options_from_collection_for_select(@project_users), { :include_blank => true },  {:class => 'form-control'}) %>
+                <%= f.select :user_id, options_for_select(@users), {}, {class: 'form-control', :style => "width: 300px;margin-bottom: 30px"} %>
+
+                <%= f.label "Select User Access" %><br>
+                <div class="custom-control-container" style="margin-bottom:30px">
+                    <div class="custom-control custom-checkbox">
+                        <%= f.check_box :write_access, :class => 'custom-control-input', :id => "write_access"  %>
+                        <%= f.label :write_access, :class => "custom-control-label", :for => "write_access"  %>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <%= f.check_box :read_access, :class => 'custom-control-input', :id => "read_access"  %>
+                        <%= f.label :read_access, :class => "custom-control-label", :for => "read_access"  %>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <%= f.check_box :update_access, :class => 'custom-control-input', :id => "update_access"  %>
+                        <%= f.label :update_access, :class => "custom-control-label", :for => "update_access"  %>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <%= f.check_box :delete_access, :class => 'custom-control-input', :id => "delete_access"  %>
+                        <%= f.label :delete_access, :class => "custom-control-label", :for => "delete_access"  %>
+                    </div>
+                </div>
+                <%= f.submit "Add User To Project", class: 'btn btn-sm btn-secondary add-not'%>
+            <% end %>
+        </div>
+    </div>
+</div>

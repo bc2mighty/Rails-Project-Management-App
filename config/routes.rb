@@ -19,6 +19,13 @@ Rails.application.routes.draw do
     get 'projects/attachments/create/:projectid' => 'projects#upload_attachments', :on => :collection
     post 'projects/attachments/create/:projectid' => 'attachments#create', :on => :collection
     # post 'projects/create' => 'projects#create', :on => :collection
+
+    get 'projects/:projectid/users' => 'projects#users', :on => :collection
+    get 'projects/:projectid/user/add' => 'projects#add_user', :on => :collection
+    post 'projects/:projectid/user/add' => 'projects#create_user', :on => :collection
+    get 'projects/:projectid/user/edit/:projectuserid' => 'projects#edit_user', :on => :collection
+    post 'projects/:projectid/user/edit/:projectuserid' => 'projects#update_user', :on => :collection
+    get 'projects/:projectid/user/delete/:projectuserid' => 'projects#delete_user', :on => :collection
   end
 
   resources :admin do

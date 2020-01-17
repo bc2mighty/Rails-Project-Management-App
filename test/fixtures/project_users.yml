@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project_user_id: MyString
+  project: one
+  user: one
+  read_access: false
+  write_access: false
+  update_access: false
+  delete_access: false
+
+two:
+  project_user_id: MyString
+  project: two
+  user: two
+  read_access: false
+  write_access: false
+  update_access: false
+  delete_access: false
