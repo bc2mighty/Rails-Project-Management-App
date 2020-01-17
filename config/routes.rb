@@ -39,5 +39,14 @@ Rails.application.routes.draw do
     post 'login' => 'admin#submit_login', :on => :collection
   end
   root 'users#index', as: 'home'
+
+  namespace 'api' do
+    namespace 'v1' do
+      resources :users
+      resources :projects do
+        post 'user/:projectid/update' => 'projects#update_user', :on => :collection
+      end
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

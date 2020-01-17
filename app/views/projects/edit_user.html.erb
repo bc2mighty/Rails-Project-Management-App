@@ -2,7 +2,8 @@
     <div class="row">
         <%= render "links/links", :locals => {:active => 'create_project'} %>
         <div class="col-md-9 bg-white right-part">
-            <h3 class="">Update <%= @user[:fullname] %>'s Access To <%= @project.title %></h3>
+            <h3 class="descriptor-h3">Update <%= @user[:fullname] %>'s Access To <%= @project.title %></h3>
+
             <% flash.each do |type, msg| %>
                 <% if type == 'success' %>
                     <div class="alert alert-success"><%= msg %></div>
@@ -17,11 +18,12 @@
                     <div class="alert alert-danger"><%= msg %></div>
                 <% end %>
             <% end %>
-            <%= form_for :project_user, url: projects_users_path + "/#{@project.projectid}/user/add", html: {class: 'login-form', id: 'lgin-form'} do |f| %>
+            <%= form_for :project_user, url: projects_users_path + "/#{@project.projectid}/user/edit/#{@project_user.project_user_id}", html: {class: 'login-form', id: 'user_project_edit_form'} do |f| %>
                 <%# f.label "Select User to add" %><br>
                 <%# f.select( :user_id, options_from_collection_for_select(@project_users), { :include_blank => true },  {:class => 'form-control'}) %>
                 <%# f.select :user_id, options_for_select(@users), {}, {class: 'form-control', :style => "width: 300px;margin-bottom: 30px"} %>
-
+                <input type="hidden" id="project_user_id" value="<%= @project_user.project_user_id %>"/>
+                <input type="hidden" id="project_id" value="<%= @project.projectid %>"/>
                 <%= f.label "Select User Access" %><br>
                 <div class="custom-control-container" style="margin-bottom:30px">
                     <div class="custom-control custom-checkbox">
@@ -41,7 +43,7 @@
                         <%= f.label :delete_access, :class => "custom-control-label", :for => "delete_access"  %>
                     </div>
                 </div>
-                <%= f.submit "Update User's Access To Project", class: 'btn btn-sm btn-secondary add-not'%>
+                <%= f.submit "Update User's Access To Project", class: 'btn btn-sm btn-secondary add-not', id: 'edit_user_project_access'%>
             <% end %>
         </div>
     </div>

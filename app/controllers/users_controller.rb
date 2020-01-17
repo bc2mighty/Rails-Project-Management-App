@@ -104,6 +104,7 @@ class UsersController < ApplicationController
     end
 
     def destroy
+        render plain: "Finally Destroyed"
         @user.destroy
         session[:logged_in] = session[:id] = session[:userid] = session[:email] = nil
         flash[:error] = "Account Deleted Successfully"

@@ -84,8 +84,12 @@ class ProjectsController < ApplicationController
         @project_user = ProjectUser.find_by(project_user_id: params[:projectuserid])
         @project = Project.find_by(projectid: params[:projectid])
         @user = User.find_by(id: @project_user.user_id)
-        # render plain: @user.inspect
+        # render plain: @project.inspect
         @users = User.pluck(:fullname, :id).to_a.unshift(["Select Name", ""])
+    end
+
+    def update_user
+        redirect_to (projects_users_path + "/#{params[:projectid]}/user/edit/" + params[:projectuserid])
     end
 
     def update

@@ -21,16 +21,40 @@ $(document).ready(function(){
             // console.log("nah")
         }
     })
+
+    $("#user_project_edit_form").on("submit", function(e){
+        e.preventDefault();
+        var write_access = $("#write_access").is(":checked"),
+        read_access = $("#read_access").is(":checked"),
+        update_access = $("#update_access").is(":checked"),
+        delete_access = $("#delete_access").is(":checked"),
+        project_user_id = $("#project_user_id").val(),
+        project_id = $("#project_id").val();  
+
+        $.ajax({
+            url: 'http://localhost:3000/api/v1/projects/user/' + project_id + '/update',
+            type: 'json',
+            method: 'post',
+            data: {
+                project_user_id: project_user_id,
+                write_access: write_access,
+                read_access: read_access,
+                update_access: update_access,
+                delete_access: delete_access,
+            },
+            success: function(data){
+                if(data.status == "SUCCESS"){
+                    window.location.assign("http://localhost:3000/users/projects/" + project_id + "/users");
+                }else{
+                    $("#edit_user_project_access").removeAttr("disabled");
+                    $("<div class='alert alert-danger'>Please Try Again, and error occured</div>").insertAfter($(".descriptor-h3"));
+                }
+            },
+            error: function(data){
+                console.log("Error Gotten there");
+            }
+        })
+    })
+
+    console.clear()
 })
-Rails.ajax({
-    url: "/books",
-    type: "get",
-    data: "",
-    success: function(data) {
-        console.log("Hey there working");
-    },
-    error: function(data) {
-        console.log("Ooops... Sorry not workin");
-    }
-  })
-  
