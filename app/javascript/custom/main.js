@@ -4,6 +4,10 @@ $(document).ready(function(){
         $(".kite#" + id + ", .action-links#" + id).fadeToggle()
     })
 
+    if($("#project_id").val() != ""){
+        window.location.assign("http://localhost:3000/users/projects/" + project_id + "/users");
+    }
+
     var hidden_inputs = $("input[type=hidden]");
     $.each(hidden_inputs, function(i, input){
         var name = $(this).attr("name")
@@ -40,9 +44,10 @@ $(document).ready(function(){
                 write_access: write_access,
                 read_access: read_access,
                 update_access: update_access,
-                delete_access: delete_access,
+                delete_access: delete_access
             },
             success: function(data){
+                console.log(data);                
                 if(data.status == "SUCCESS"){
                     window.location.assign("http://localhost:3000/users/projects/" + project_id + "/users");
                 }else{

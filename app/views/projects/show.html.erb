@@ -27,7 +27,7 @@
                         <% @project.attachments.each do |attachment| %>
                             <% (0..attachment.files.count-1).each do |file| %>
                                 <div class="col-md-6" style="margin-bottom:20px">
-                                    <%#= attachment.files[file].content_type %>
+                                    <%#= attachment.files[file].inspect %>
                                     <% if (["application/pdf","application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","text/plain",'text/csv'].include?(attachment.files[file].content_type)) %>
                                         <h5><%= attachment.title %></h5>
                                         <%= link_to "Open File", attachment.files[file], :class => "btn btn-sm btn-secondary", "target" => "_blank" %>

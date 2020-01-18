@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
     def users
         @project = Project.find_by(projectid: params[:projectid])
         @project_users = ProjectUser.where("project_id = ?",@project[:id])
-        # render plain: @project_users.class
+        # render plain: @project_users.inspect
     end
 
     def add_user
@@ -89,6 +89,7 @@ class ProjectsController < ApplicationController
     end
 
     def update_user
+        flash[:error] = "Please try updating again."
         redirect_to (projects_users_path + "/#{params[:projectid]}/user/edit/" + params[:projectuserid])
     end
 
@@ -125,6 +126,10 @@ class ProjectsController < ApplicationController
 
     def get_project
         @project = Project.find_by(projectid: params[:projectid])
+    end
+
+    def threads
+        @project_threads = ProjectThreads.all
     end
 
     private

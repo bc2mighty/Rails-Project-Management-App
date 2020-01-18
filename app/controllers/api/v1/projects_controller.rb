@@ -6,19 +6,19 @@ module Api
                 begin
                     project_user = ProjectUser.find_by(project_user_id: project_user_params[:project_user_id])
                     if project_user == nil
-                        render json: {status: "ERROR", message: "You're not there now", data: "Wrong Project User ID Provided"}, status: :unprocessable_entity
+                        render json: {status: "ERROR", message: "Update Not Successful. Access Not Found", data: "Wrong Project User ID Provided"}, status: :unprocessable_entity
                     else
                         project_user.update_attributes(project_user_params)
-                        render json: {status: "SUCCESS", message: "You're here now", data: project_user}, status: :ok
+                        render json: {status: "SUCCESS", message: "User Access To Project Updated Successfully", data: params}, status: :ok
                     end
                 rescue
-                    render json: {status: "ERROR", message: "You're not there now", data: "Wrong Project User ID Provided"}, status: :unprocessable_entity
+                    render json: {status: "ERROR", message: "Updated Not Successful", data: "Wrong Project User ID Provided"}, status: :unprocessable_entity
                 end
             end
 
             private
                 def project_user_params
-                    params.permit(:project_user_id, :write_access, :read_access, :update_access, :delete_access)
+                    params.permit(:project_user_id, :write_access, :read_access, :update_access, :delete_access, :project_id)
                 end
         end
     end

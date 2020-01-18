@@ -20,12 +20,21 @@ Rails.application.routes.draw do
     post 'projects/attachments/create/:projectid' => 'attachments#create', :on => :collection
     # post 'projects/create' => 'projects#create', :on => :collection
 
+    # Users Routes
     get 'projects/:projectid/users' => 'projects#users', :on => :collection
     get 'projects/:projectid/user/add' => 'projects#add_user', :on => :collection
     post 'projects/:projectid/user/add' => 'projects#create_user', :on => :collection
     get 'projects/:projectid/user/edit/:projectuserid' => 'projects#edit_user', :on => :collection
     post 'projects/:projectid/user/edit/:projectuserid' => 'projects#update_user', :on => :collection
     get 'projects/:projectid/user/delete/:projectuserid' => 'projects#delete_user', :on => :collection
+
+    # Thread Routes
+    get 'projects/threads/:projectid' => 'projects#threads', :on => :collection
+    get 'projects/thread/create/:projectid' => 'projects#add_thread', :on => :collection
+    post 'projects/threads/create/:projectid' => 'project_threads#create', :on => :collection
+    get 'projects/threads/update/:projectid/:thread_id' => 'projects#edit_thread', :on => :collection
+    post 'projects/threads/update/:projectid/:thread_id' => 'project_threads#update', :on => :collection
+    get 'projects/threads/delete/:thread_id' => 'project_threads#destroy', :on => :collection
   end
 
   resources :admin do
