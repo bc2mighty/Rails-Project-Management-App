@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" class="no-grey-bg">
+<head>
+    <title>MyBasecamp1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" %>
+    <%= stylesheet_link_tag href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= stylesheet_link_tag href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" %>
+    <%= stylesheet_link_tag 'styles', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+</head>
+<body class="no-grey-bg">
+    <%= yield %>
+    <%= javascript_tag src="https://code.jquery.com/jquery-3.4.1.min.js" %>
+    <%= javascript_tag src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" %>
+</body>
+</html>

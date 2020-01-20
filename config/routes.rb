@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :project_threads
   resources :attachments
   resources :users do
     resources :projects
@@ -31,10 +32,10 @@ Rails.application.routes.draw do
     # Thread Routes
     get 'projects/threads/:projectid' => 'projects#threads', :on => :collection
     get 'projects/thread/create/:projectid' => 'projects#add_thread', :on => :collection
-    post 'projects/threads/create/:projectid' => 'project_threads#create', :on => :collection
-    get 'projects/threads/update/:projectid/:thread_id' => 'projects#edit_thread', :on => :collection
-    post 'projects/threads/update/:projectid/:thread_id' => 'project_threads#update', :on => :collection
-    get 'projects/threads/delete/:thread_id' => 'project_threads#destroy', :on => :collection
+    post 'projects/thread/create/:projectid' => 'project_threads#create', :on => :collection
+    get 'projects/threads/:projectid/:thread_id/update' => 'projects#edit_thread', :on => :collection
+    post 'projects/threads/:projectid/:thread_id/update' => 'project_threads#update', :on => :collection
+    get 'projects/threads/:projectid/:thread_id/delete' => 'project_threads#destroy', :on => :collection
   end
 
   resources :admin do

@@ -1,0 +1,28 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/links", :locals => {:active => 'create_project'} %>
+        <div class="col-md-9 bg-white right-part">
+            <h3 class="">Update Thread For <%= @project.title %></h3>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <%= form_for :project_thread, url: request.fullpath, html: {class: 'login-form'} do |f| %>
+                <%= f.text_field :topic, class: 'form-control', placeholder: 'Enter Thread Title' %>
+                    <% if @project_thread != nil and @project_thread.errors.any? and @project_thread.errors.to_h[:topic].to_s != "" %>
+                        <div class="alert alert-danger"><%= "Title " + @project_thread.errors.to_h[:topic].to_s %></div>
+                    <% end %>
+                <%= f.text_area :description, class: 'form-control', placeholder: 'Enter Thread Description' %>
+                    <% if @project_thread != nil and @project_thread.errors.any? and @project_thread.errors.to_h[:description].to_s != "" %>
+                        <div class="alert alert-danger"><%= "Description " + @project_thread.errors.to_h[:description].to_s %></div>
+                    <% end %>
+                <%= f.submit "Update Thread", class: 'form-submit'%>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -90,6 +90,7 @@ class ProjectsController < ApplicationController
 
     def update_user
         flash[:error] = "Please try updating again."
+        # render plain: params[:projectuserid].inspect
         redirect_to (projects_users_path + "/#{params[:projectid]}/user/edit/" + params[:projectuserid])
     end
 
@@ -129,7 +130,19 @@ class ProjectsController < ApplicationController
     end
 
     def threads
-        @project_threads = ProjectThreads.all
+        @project = Project.find_by(projectid: params[:projectid])
+        @project_threads = ProjectThread.where("project_id = ?",@project[:id])
+        # render plain: @project_threads.inspect
+    end
+
+    def add_thread
+        @project = Project.find_by(projectid: params[:projectid])
+        @project_thread = ProjectThread.new
+    end
+
+    def edit_thread
+        @project = Project.find_by(projectid: params[:projectid])
+        @project_thread = ProjectThread.find_by(thread_id: params[:thread_id])
     end
 
     private

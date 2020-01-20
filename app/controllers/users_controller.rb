@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+    layout :resolve_layout
     before_action :authorize_login, :only => [:login, :new]
-    before_action :authorize_logout, :only => [:dashboard, :profile, :projects, :create_project, :edit_project, :show, :logout, :destroy]
+    before_action :authorize_logout, :only => [:dashboard, :profile, :projects, :create_project, :edit_project, :show, :logout, :destroy, :threads, :add_thread]
     def index
         @user = User.new
     end
@@ -111,11 +112,24 @@ class UsersController < ApplicationController
         redirect_to login_users_path
     end
 
+    def threads
+    end
+
     def logout
         session[:logged_in] = session[:id] = session[:userid] = session[:email] = nil
         flash[:error] = "You have logged out successfuly! Please login again"
         redirect_to login_users_path
     end
+
+    private
+        def resolve_layout
+            case action_name
+            when "threads"
+                "index_layout"
+            else
+                "application"
+            end
+        end
 
     private
         def user_params

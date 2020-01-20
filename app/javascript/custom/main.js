@@ -1,11 +1,15 @@
 $(document).ready(function(){
+
+    console.clear()
+
     $(".three-circles").click(function(){
         var id = $(this).attr("id")
         $(".kite#" + id + ", .action-links#" + id).fadeToggle()
     })
 
-    if($("#project_id").val() != ""){
-        window.location.assign("http://localhost:3000/users/projects/" + project_id + "/users");
+    if($("input#project_id").val() != "" && typeof $("input#project_id").val() != 'undefined'){
+        // window.location.assign("http://localhost:3000/users/projects/" + $(project_id).val() + "/users");
+        console.log($("input#project_id").val());
     }
 
     var hidden_inputs = $("input[type=hidden]");
@@ -60,6 +64,4 @@ $(document).ready(function(){
             }
         })
     })
-
-    console.clear()
 })

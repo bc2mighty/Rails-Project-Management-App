@@ -78,6 +78,9 @@
                         <%= link_to users_path + "/projects/#{project.projectid}/users", :class => 'btn btn-sm btn-secondary all-center', :style => 'background-color:#323e7a;border: 1px solid #323e7a;', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Users Link" do %>
                             <i class="fa fa-user"></i>
                         <% end %>
+                        <%= link_to users_path + "/projects/threads/#{project.projectid}", :class => 'btn btn-sm btn-secondary all-center', :style => 'background-color:#4d2227;border: 1px solid #4d2227;', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Thread Link" do %>
+                            <i class="fa fa-thermometer-three-quarters"></i>
+                        <% end %>
                         <%= link_to users_path + "/projects/view/#{project.projectid}", :class => 'btn btn-sm btn-primary all-center', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "View Project Details" do %>
                             <i class="fa fa-eye"></i>
                         <% end %>

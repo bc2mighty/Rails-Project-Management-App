@@ -1,7 +1,15 @@
+:root{
+    --theme-color: #2c3e50;
+}
+
 body, html{
     margin: 0;
     padding: 0;
     background: #d8d8d8;
+}
+
+body.no-grey-bg, html.no-grey-bg{
+    background: none;
 }
 
 *{
@@ -334,4 +342,127 @@ a.all-center{
 .custom-control{
     margin-right: 20px;
     display: inline-block;
+}
+
+.container{
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.header{
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: var(--theme-color);
+}
+
+.header.stay-top{
+    position: fixed;
+    width: 20%;
+}
+
+i.fa.fa-style-added{
+    height: 30px;
+    width: 30px;
+    background: var(--theme-color);
+    color: #fff;
+    text-align: center;
+    padding-top: 5px;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+i.fa.thread-img{
+    height: 50px;
+    width: 50px;
+    background: #c7c7c7;
+    color: #fff;
+    text-align: center;
+    padding-top: 5px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    font-size: 32px;
+}
+
+ul.action-list{
+    height: 200px;
+    width: 20%;
+    list-style-type: none;
+    position: fixed;
+    margin-top: 50px;
+    padding: 0;
+}
+
+ul.action-list li{
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 5px;
+    box-sizing: border-box;
+}
+
+ul.action-list li:hover{
+    background: var(--theme-color);
+    transition: .2s ease-in-out;
+    border-radius: 4px;
+}
+
+ul.action-list li:hover a.action-link{
+    color: #fff;
+}
+
+ul.action-list li:hover a.action-link i.fa{
+    background: #fff;
+    color: var(--theme-color);
+}
+
+ul.action-list li a.action-link{
+    color: var(--theme-color);
+    text-decoration: none;
+    display: block;
+    height: inherit;
+    width: 100%;
+}
+
+.padded-top{
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+
+.left-side{
+    height: inherit;
+    border-right: 1px solid #dbdbdb;
+}
+
+.thread-container{
+    height: auto;
+    width: 100%;
+}
+
+.thread-container .thread{
+    height: auto;
+    width: 100%;
+}
+
+.middle-container{
+    border-right: 1px solid #dbdbdb;
+}
+
+.thread-row{
+    border-top: 1px solid #dbdbdb;
+    padding: 10px 0;
+    box-sizing: border-box;
+    /* cursor: pointer; */
+}
+
+.thread-row:hover{
+    background: #fafafa;
+}
+
+.thread:last-child{
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.thread-container .thread a.thread-link{
+    text-decoration: none;
+    color: black;
 }

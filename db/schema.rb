@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_085953) do
+ActiveRecord::Schema.define(version: 2020_01_20_142959) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,32 @@ ActiveRecord::Schema.define(version: 2020_01_15_085953) do
     t.index ["project_id"], name: "index_attachments_on_project_id"
   end
 
+  create_table "project_threads", force: :cascade do |t|
+    t.string "thread_id"
+    t.integer "project_id", null: false
+    t.integer "user_id", null: false
+    t.string "topic"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_project_threads_on_project_id"
+    t.index ["user_id"], name: "index_project_threads_on_user_id"
+  end
+
+  create_table "project_users", force: :cascade do |t|
+    t.string "project_user_id"
+    t.integer "project_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "read_access"
+    t.boolean "write_access"
+    t.boolean "update_access"
+    t.boolean "delete_access"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_project_users_on_project_id"
+    t.index ["user_id"], name: "index_project_users_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -64,5 +90,9 @@ ActiveRecord::Schema.define(version: 2020_01_15_085953) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attachments", "projects"
+  add_foreign_key "project_threads", "projects"
+  add_foreign_key "project_threads", "users"
+  add_foreign_key "project_users", "projects"
+  add_foreign_key "project_users", "users"
   add_foreign_key "projects", "users"
 end

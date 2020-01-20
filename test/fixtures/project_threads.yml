@@ -2,10 +2,14 @@
 
 one:
   thread_id: MyString
-  project_id: MyString
-  topic: MyText
+  project: one
+  user: one
+  topic: MyString
+  description: MyText
 
 two:
   thread_id: MyString
-  project_id: MyString
-  topic: MyText
+  project: two
+  user: two
+  topic: MyString
+  description: MyText
