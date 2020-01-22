@@ -3,6 +3,7 @@ $(document).ready(function(){
     console.clear()
 
     $(".three-circles").click(function(){
+        console.log("Hello There");        
         var id = $(this).attr("id")
         $(".kite#" + id + ", .action-links#" + id).fadeToggle()
     })

@@ -125,7 +125,7 @@ form.login-form input[type=email]{
 form.login-form input.form-control, form.login-form textarea.form-control{
     width: 100%;
     height: 50px;
-    padding: 4px 2%;
+    padding: 8px 2%;
     box-sizing: border-box;
     display: block;
     font-size: 16px;
@@ -311,6 +311,19 @@ a.all-center{
     display: none;
 }
 
+.kite.comment-kite{
+    /* display: block; */
+    left: 79%;
+}
+
+.action-links.comment-action-links{
+    /* display: block; */
+    width: 8%;
+    padding: 5px 7px;
+    margin-top: 24px;
+    left: 73%;
+}
+
 .action-links{
     height: auto;
     width: 37%;
@@ -465,4 +478,87 @@ ul.action-list li a.action-link{
 .thread-container .thread a.thread-link{
     text-decoration: none;
     color: black;
+}
+
+.white-bg-container{
+    background-color: #fff;
+    height: auto;
+    margin: 20px auto;
+    padding: 30px 2%;
+    width: 70%;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.white-bg-container .comment-row{
+    height: auto;
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+}
+
+.comment-row .left{
+    width: 50px;
+    margin-right: 20px;
+}
+
+.left .user-img{
+    background: #b05638;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    box-sizing: border-box;
+    font-size: 23px;
+    margin-top: 10px;
+}
+
+.comment-row .right{
+    width: calc(100% - 100px);
+    background: #faf8f7;
+    padding: 10px 1%;
+    box-sizing: border-box;
+    height: auto;
+}
+
+.right .message{
+    margin-top: 15px;
+}
+
+.right .top-items{
+    height: 20px;
+    display: flex;
+}
+
+.right .top-items .bolden-words{
+    font-weight: 600;
+}
+
+.right .top-items .three-circles{
+    margin-left: 10px;
+    display: flex;
+    padding-top: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 10px;
+    width: auto;
+}
+
+.three-circles .circle{
+    height: 5px;
+    width: 5px;
+    background: #2c3e50;
+    margin-left: 2px;
+}
+
+.top-items .date{
+    margin-left: auto;
+    color: #a3a3a3;
+    font-size: 14px;
+}
+
+.message-form{
+    margin-top: 40px;
 }

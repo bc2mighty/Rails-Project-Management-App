@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_142959) do
+ActiveRecord::Schema.define(version: 2020_01_21_194000) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,8 +42,21 @@ ActiveRecord::Schema.define(version: 2020_01_20_142959) do
     t.index ["project_id"], name: "index_attachments_on_project_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "message_id"
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
+    t.integer "project_thread_id", null: false
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_messages_on_project_id"
+    t.index ["project_thread_id"], name: "index_messages_on_project_thread_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "project_threads", force: :cascade do |t|
-    t.string "thread_id"
+    t.string "project_thread_id"
     t.integer "project_id", null: false
     t.integer "user_id", null: false
     t.string "topic"
@@ -90,6 +103,9 @@ ActiveRecord::Schema.define(version: 2020_01_20_142959) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "attachments", "projects"
+  add_foreign_key "messages", "project_threads"
+  add_foreign_key "messages", "projects"
+  add_foreign_key "messages", "users"
   add_foreign_key "project_threads", "projects"
   add_foreign_key "project_threads", "users"
   add_foreign_key "project_users", "projects"

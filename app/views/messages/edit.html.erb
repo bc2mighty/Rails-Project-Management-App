@@ -1,0 +1,26 @@
+<div class="white-bg-container">
+    <h3 class="font-weight-bold" style="color: #2c3e50;">Update Message</h3>
+    <% flash.each do |type, msg| %>
+        <% if type == 'success' %>
+            <div class="alert alert-success"><%= msg %></div>
+        <% elsif type == 'error' %>
+            <div class="alert alert-danger"><%= msg %></div>
+        <% else %>
+            <div class="alert alert-info"><%= msg %></div>
+        <% end %>
+    <% end %>
+    <% if @message != nil and @message.errors.any? %>
+        <% @message.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger"><%= msg %></div>
+        <% end %>
+    <% end %>
+    <div class="message-form">
+        <%= form_for :message, url: request.fullpath, html: {class: 'login-form'} do |f| %>
+            <%= f.text_area :message, class: 'form-control', placeholder: 'Enter Your Comment Here...' %>
+                <% if @message != nil and @message.errors.any? and @message.errors.to_h[:message].to_s != "" %>
+                    <div class="alert alert-danger"><%= "Message " + @message.errors.to_h[:message].to_s %></div>
+                <% end %>
+            <%= f.submit "Update Message", class: 'form-submit'%>
+        <% end %>
+    </div>
+</div>

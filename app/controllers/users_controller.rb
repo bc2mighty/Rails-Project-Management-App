@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    layout :resolve_layout
+    # layout :resolve_layout
     before_action :authorize_login, :only => [:login, :new]
     before_action :authorize_logout, :only => [:dashboard, :profile, :projects, :create_project, :edit_project, :show, :logout, :destroy, :threads, :add_thread]
     def index
@@ -113,6 +113,18 @@ class UsersController < ApplicationController
     end
 
     def threads
+        @project = Project.find_by(projectid: params[:projectid])
+        @project_thread = ProjectThread.find_by(project_thread_id: params[:thread_id])
+        @message = Message.new
+        @bgs = ["#68428a","#a64791","#855635","#4c7e8a","#323e7a","#943469","#4d2227","#b05638","#4d0b47","#992b59","#1b5780","#046e6e","#254a22","#6d8748","#5d6344"]
+        # render plain: @project_thread.messages.inspect
+    end
+
+    def shared_projects
+        @projects = ProjectUser.where("user_id = ?", session[:id])
+        @pagy, @projects = pagy(@projects, items: 5)
+        @bgs = ["#68428a","#a64791","#855635","#4c7e8a","#323e7a","#943469","#4d2227","#b05638","#4d0b47","#992b59","#1b5780","#046e6e","#254a22","#6d8748","#5d6344"]
+        # render plain: @projects[0].project.inspect
     end
 
     def logout

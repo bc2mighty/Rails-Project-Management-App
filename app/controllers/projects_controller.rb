@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
 
     def show
         @project = Project.find_by(projectid: params[:projectid])
+        # render plain: @project.inspect
     end
 
     def users
@@ -74,10 +75,10 @@ class ProjectsController < ApplicationController
 
     def delete_user
         @project_user = ProjectUser.find_by(project_user_id: params[:projectuserid])
+        # render plain: @project_user.inspect
         @project_user.destroy
         flash[:error] = "User Deleted From Project Successfully"
         redirect_to projects_users_path + "/#{params[:projectid]}/users"
-        # render plain: params[:projectid].inspect
     end
 
     def edit_user
@@ -96,8 +97,9 @@ class ProjectsController < ApplicationController
 
     def update
         params[:project][:user_id] = session[:id]
-        # render plain: params[:project].inspect
         @project = Project.find_by(projectid: params[:projectid])
+        params[:project].delete(:user_id)
+        # render plain: params.inspect
         if (@project.update(project_params))
             flash[:success] = "Project Updated Successfully"
             redirect_to projects_users_path
@@ -125,6 +127,14 @@ class ProjectsController < ApplicationController
         # render plain: 
     end
 
+    def delete_attachment
+        @attachment = ActiveStorage::Attachment.find(params[:id])
+        @attachment.purge
+        flash[:error] = "Attachment Deleted Successfully"
+        redirect_to projects_users_path
+        # render plain: @attachment.inspect
+    end
+
     def get_project
         @project = Project.find_by(projectid: params[:projectid])
     end
@@ -142,7 +152,7 @@ class ProjectsController < ApplicationController
 
     def edit_thread
         @project = Project.find_by(projectid: params[:projectid])
-        @project_thread = ProjectThread.find_by(thread_id: params[:thread_id])
+        @project_thread = ProjectThread.find_by(project_thread_id: params[:thread_id])
     end
 
     private
