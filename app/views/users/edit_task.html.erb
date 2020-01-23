@@ -1,0 +1,24 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/links", :locals => {:active => 'create_task'} %>
+        <div class="col-md-9 bg-white right-part">
+            <h3 class="">Update Task</h3>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <%= form_for :task, url: request.fullpath, html: {class: 'login-form'} do |f| %>
+                <%= f.text_field :title, class: 'form-control', placeholder: 'Enter Task Title' %>
+                    <% if @task != nil and @task.errors.any? and @task.errors.to_h[:title].to_s != "" %>
+                        <div class="alert alert-danger"><%= "Title " + @task.errors.to_h[:title].to_s %></div>
+                    <% end %>
+                <%= f.submit "Update Task", class: 'form-submit'%>
+            <% end %>
+        </div>
+    </div>
+</div>

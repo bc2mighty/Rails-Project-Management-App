@@ -27,14 +27,14 @@
                     <% count = 0 %>
                     <% @projects.each do |project| %>
                     <tr>
-                    <th scope="row"><%= count += 1 %></th>
-                    <td><%= project.project.title %></td>
-                    <td><%= project.project.description %></td>
-                    <td>
-                        <%= link_to "View", users_path + "/projects/view/#{project.project.projectid}", :class => 'btn btn-sm btn-primary' %>
-                        <%= link_to "Edit", users_path + "/projects/edit/#{project.project.projectid}", :class => 'btn btn-sm btn-secondary' %>
-                        <%= link_to "Delete", users_path + "/projects/delete/#{project.project.projectid}", data: {confirm: "Are you sure you want to delete this project?"}, :class => 'btn btn-sm btn-danger' %>
-                    </td>
+                        <td scope="row"><%= count += 1 %></td>
+                        <td><%= project.project.title %></td>
+                        <td><%= project.project.description %></td>
+                        <td>
+                            <%= link_to "View", users_path + "/projects/view/#{project.project.projectid}", :class => 'btn btn-sm btn-primary' %>
+                            <%= link_to "Edit", users_path + "/projects/edit/#{project.project.projectid}", :class => 'btn btn-sm btn-secondary' %>
+                            <%= link_to "Delete", users_path + "/projects/delete/#{project.project.projectid}", data: {confirm: "Are you sure you want to delete this project?"}, :class => 'btn btn-sm btn-danger' %>
+                        </td>
                     </tr>
                     <% end %>
                 </tbody>
@@ -77,6 +77,11 @@
                     <p class="text-center project-text"><%= project.project.title %></p>
                     <p class="text-center project-text"><%= project.project.description %></p>
                     <div class="text-center">
+                        <% if project.write_access and project.read_access %>
+                            <%= link_to users_path + "/projects/#{project.project.projectid}/tasks", :class => 'btn btn-sm btn-secondary all-center', :style => 'background-color: #5d6344;border: 1px solid #5d6344;', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Tasks Link" do %>
+                                <i class="fa fa-tasks"></i>
+                            <% end %>
+                        <% end %>
                         <% if project.write_access %>
                             <%= link_to users_path + "/projects/threads/#{project.project.projectid}", :class => 'btn btn-sm btn-secondary all-center', :style => 'background-color:#4d2227;border: 1px solid #4d2227;', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Thread Link" do %>
                                 <i class="fa fa-thermometer-three-quarters"></i>

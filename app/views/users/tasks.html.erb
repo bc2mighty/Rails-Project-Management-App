@@ -1,0 +1,51 @@
+<div class="change-padding" style="margin-top:30px">
+    <div class="row">
+        <%= render "links/links", :locals => {:active => 'tasks'} %>
+        
+        <div class="col-md-9 bg-white right-part">
+            <h3>Your Tasks</h3>
+            <%= link_to "Add Tasks", projects_users_path + "/#{@project.projectid}/task/add", :class => 'btn btn-sm btn-secondary'  %>
+            <% flash.each do |type, msg| %>
+                <% if type == 'success' %>
+                    <div class="alert alert-success"><%= msg %></div>
+                <% elsif type == 'error' %>
+                    <div class="alert alert-danger"><%= msg %></div>
+                <% else %>
+                    <div class="alert alert-info"><%= msg %></div>
+                <% end %>
+            <% end %>
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% count = 0 %>
+                    <% @project.tasks.order(created_at: :desc).each do |task| %>
+                        <tr>
+                            <th scope="row"><%= count += 1 %></th>
+                            <td><%= task.title %></td>
+
+                            <td>
+                                <% if session[:id] == @project.user_id %>
+                                    <%= link_to users_path + "/projects/#{@project.projectid}/task/edit/#{task.task_id}", :class => 'btn btn-sm btn-secondary all-center', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Edit Thread Details"  do %>
+                                        <i class="fa fa-edit"></i>
+                                    <% end %>
+                                    <%= link_to users_path + "/projects/#{@project.projectid}/task/delete/#{task.task_id}", data: {confirm: "Are you sure you want to delete this thread from this project?"}, :class => 'btn btn-sm btn-danger all-center', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Delete Thread"  do %>
+                                        <i class="fa fa-trash"></i>
+                                    <% end %>
+                                <% end %>
+                            </td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+                <%# pagy_nav(@pagy).html_safe %>
+            </div>
+        </div>
+    </div>
+</div>

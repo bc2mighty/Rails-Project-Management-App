@@ -75,6 +75,9 @@
                     <p class="text-center project-text"><%= project.title %></p>
                     <p class="text-center project-text"><%= project.description %></p>
                     <div class="text-center">
+                        <%= link_to users_path + "/projects/#{project.projectid}/tasks", :class => 'btn btn-sm btn-secondary all-center', :style => 'background-color: #5d6344;border: 1px solid #5d6344;', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Tasks Link" do %>
+                            <i class="fa fa-tasks"></i>
+                        <% end %>
                         <%= link_to users_path + "/projects/#{project.projectid}/users", :class => 'btn btn-sm btn-secondary all-center', :style => 'background-color:#323e7a;border: 1px solid #323e7a;', "data-toggle" => "tooltip", "data-placement" => "top", "title" => "Users Link" do %>
                             <i class="fa fa-user"></i>
                         <% end %>

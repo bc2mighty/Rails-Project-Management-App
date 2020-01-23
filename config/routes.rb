@@ -32,6 +32,14 @@ Rails.application.routes.draw do
     post 'projects/:projectid/user/edit/:projectuserid' => 'projects#update_user', :on => :collection
     get 'projects/:projectid/user/delete/:projectuserid' => 'projects#delete_user', :on => :collection
 
+    # Tasks Routes
+    get 'projects/:projectid/tasks' => 'users#tasks', :on => :collection
+    get 'projects/:projectid/task/add' => 'users#add_task', :on => :collection
+    post 'projects/:projectid/task/add' => 'users#create_task', :on => :collection
+    get 'projects/:projectid/task/edit/:task_id' => 'users#edit_task', :on => :collection
+    post 'projects/:projectid/task/edit/:task_id' => 'users#update_task', :on => :collection
+    get 'projects/:projectid/task/delete/:task_id' => 'users#delete_task', :on => :collection
+
     # Thread Routes
     get 'projects/:projectid/threads/:thread_id' => 'users#threads', :on => :collection
     get 'projects/:projectid/threads/:thread_id/message/edit/:message_id' => 'messages#edit', :on => :collection

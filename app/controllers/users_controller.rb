@@ -133,7 +133,63 @@ class UsersController < ApplicationController
         redirect_to login_users_path
     end
 
+    def tasks
+        @project = Project.find_by(projectid: params[:projectid])
+    end
+
+    def add_task
+        @task = Task.new
+        @project = Project.find_by(projectid: params[:projectid])
+    end
+
+    def create_task
+        @task = Task.new(task_params)
+        @project = Project.find_by(projectid: params[:projectid])
+        @task.project_id = @project[:id]
+        @task.user_id = @project[:user_id]
+        @task.task_id = SecureRandom.uuid
+        
+        if (@task.save)
+            flash[:success] = "Task created Successfully"
+            redirect_to projects_users_path + "/#{params[:projectid]}/tasks"
+        else
+            flash[:error] = "You have some errors there"
+            render 'add_task'
+        end
+    end
+
+    def edit_task
+        @task = Task.find_by(task_id: params[:task_id])
+        @project = Project.find_by(projectid: params[:projectid])
+    end
+
+    def update_task
+        @task = Task.find_by(task_id: params[:task_id])
+        if @task.update(task_params)
+            flash[:success] = "Task updated Successfully"
+            redirect_to projects_users_path + "/#{params[:projectid]}/tasks"
+        else
+            flash[:error] = "You have some errors there"
+            render 'edit_task'
+        end
+    end
+
+    def delete_task
+        @task = Task.find_by(task_id: params[:task_id])
+        @task.destroy
+        flash[:error] = "Task deleted Successfully"
+        redirect_to projects_users_path + "/#{params[:projectid]}/tasks"
+    end
+
     private
+        def user_params
+            params.require(:user).permit(:fullname, :email, :password)
+        end
+
+        def task_params
+            params.require(:task).permit(:title)
+        end
+
         def resolve_layout
             case action_name
             when "threads"
@@ -141,11 +197,6 @@ class UsersController < ApplicationController
             else
                 "application"
             end
-        end
-
-    private
-        def user_params
-            params.require(:user).permit(:fullname, :email, :password)
         end
 
 end
