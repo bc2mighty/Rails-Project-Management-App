@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Attachment < ApplicationRecord
   belongs_to :project
   has_many_attached :files
-  validates_presence_of :title, :userid, :project_id
+  validates :title, :userid, :project_id, presence: true
 end
