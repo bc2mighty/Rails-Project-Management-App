@@ -1,23 +1,25 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :messages
   resources :project_threads
   resources :attachments
   resources :users do
     resources :projects
-    get 'logout', :on => :collection
-    get 'login', :on => :collection
+    get 'logout', on: :collection
+    get 'login', on: :collection
     post 'login' => 'users#submit_login', :on => :collection
-    get 'dashboard', :on => :collection
-    get 'profile', :on => :collection
+    get 'dashboard', on: :collection
+    get 'profile', on: :collection
     patch 'profile' => 'users#submit_profile', :on => :collection
-    get 'projects', :on => :collection
-    get 'projects/shared' => "users#shared_projects", :on => :collection
+    get 'projects', on: :collection
+    get 'projects/shared' => 'users#shared_projects', :on => :collection
     get 'projects/create' => 'users#create_project', :on => :collection
     post 'projects/create' => 'projects#create', :on => :collection
     get 'projects/view/:projectid' => 'projects#show', :on => :collection
     get 'projects/edit/:projectid' => 'users#edit_project', :on => :collection
     post 'projects/edit/:projectid' => 'projects#update', :on => :collection
-    get 'projects/delete/:projectid' => 'projects#destroy', :on => :collection 
+    get 'projects/delete/:projectid' => 'projects#destroy', :on => :collection
     get 'projects/:projectid/attachments/delete/:id' => 'projects#delete_attachment', :on => :collection
     get 'projects/attachments/:projectid' => 'projects#attachments', :on => :collection
     get 'projects/attachments/create/:projectid' => 'projects#upload_attachments', :on => :collection
@@ -55,9 +57,9 @@ Rails.application.routes.draw do
   end
 
   resources :admin do
-    get 'logout', :on => :collection
-    get 'login', :on => :collection
-    get 'dashboard', :on => :collection
+    get 'logout', on: :collection
+    get 'login', on: :collection
+    get 'dashboard', on: :collection
     get 'users' => 'admin#users', :on => :collection
     get 'users/projects/:userid' => 'admin#projects', :on => :collection
     get 'users/set_admin/:userid' => 'admin#set_admin', :on => :collection
