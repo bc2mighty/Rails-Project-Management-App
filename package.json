@@ -7,10 +7,33 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
     "rails-ujs": "^5.2.4-1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "yarn": "^1.22.19"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "cypress": "^12.3.0",
+    "cypress-wait-until": "^1.7.2",
+    "husky": "^4.3.8",
     "webpack-dev-server": "^4.11.1"
-  }
+  },
+  "description": "This is a Basecamp Project Management App that has features likes tasks, threads and messaging. [Visit it here](https://mighty-lowlands-56246.herokuapp.com/) and the admin here [Visit it here](https://mighty-lowlands-56246.herokuapp.com/admin) with admin email as admin@mybasecamp.com and password as mighty",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lumerasoft/Rails-Project-Management-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lumerasoft/Rails-Project-Management-App/issues"
+  },
+  "homepage": "https://github.com/lumerasoft/Rails-Project-Management-App#readme"
 }
